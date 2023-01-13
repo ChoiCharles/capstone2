@@ -1,0 +1,2472 @@
+WindowManager:
+    MainWindow:
+    Properties:
+    Demensionless:
+    Reynolds:
+    Prandtl:
+    Grashof:
+    Rayleigh:
+    Convection:
+    Forced_Convection:
+    External_Flow:
+    External_Plate:
+    External_Cylinder:
+    External_Sphere:
+    Infinite_Cylinder:
+    Internal_Flow:
+    Entrance_Area:
+    Combined_Entrance_Area:
+    Circular_Tube_Turbulent_Flow:
+    Free_Convection:
+    Horizontal_Plate:
+    Horizontal_Plate_Top:
+    Horizontal_Plate_Bottom:
+    Horizontal_Cylinder:
+    Vertical_Plate:
+    fc_sphere_nd:
+    fc_horizontal_enclosure:
+    fc_vertical_cavity:
+    fc_concentric_cylinder:
+    fc_concentric_sphere:
+    fc_tilted_cavity:
+
+<MainWindow>
+    name: "MainWindow"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        Button:
+            text: "Properties"
+            font_size: 50
+            on_release:
+                app.root.current = "Properties"
+                root.manager.transition.direction = "left"
+                
+        Button:
+            text: "Demensionless\n Number"
+            font_size: 50
+            on_release:
+                app.root.current = "Demensionless"
+                root.manager.transition.direction = "left"
+                
+        Button:
+            text: "Convection"
+            font_size: 50
+            on_release:
+                app.root.current = "Convection"
+                root.manager.transition.direction = "left"
+            
+
+<Properties>
+    name: "Properties"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Properties"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "MainWindow"
+                    root.manager.transition.direction = "right"
+                    
+            Label:
+                id: T
+                text: "Temperature (Celcius)"
+                font_size: 50
+        	
+        	TextInput:
+    			id: T_input
+    			hint_text: "Input Temperature"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+                
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+                
+            Button:
+                id: result
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: k
+                text: "Conductivity [W/mK] ="
+                font_size: 50
+                on_text: root.result(k.text)
+                
+            Label:
+                id: mu
+                text: "Viscosity [m^2/s] ="
+                font_size: 50
+                on_text: root.result(mu.text)
+                
+            Label:
+                id: rho
+                text: "Density [kg/m^3] ="
+                font_size: 50
+                on_text: root.result(rho.text)
+                
+    		Label:
+                id: cp
+                text: "Specific Heat [kJ/kgK] ="
+                font_size: 50
+                on_text: root.result(cp.text)
+                
+            Label:
+                id: beta
+                text: "Coefficient of Expansion [1/K] ="
+                font_size: 35
+                on_text: root.result(beta.text)
+                
+            Label:
+                id: enthalpy
+                text: "Enthalpy [kJ/kg] ="
+                font_size: 50
+                on_text: root.result(enthalpy.text)
+
+
+<Demensionless>:
+    name: "Demensionless"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Dimensionless Number"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "MainWindow"
+                    root.manager.transition.direction = "right"
+        
+            Button:
+                text: "Reynolds\n Number"
+                font_size: 50
+                on_release:
+                    app.root.current = "Reynold Number"
+                    root.manager.transition.direction = "left"
+            Button:
+                text: " Prandtl\nNumber"
+                font_size: 50
+                on_release:
+                    app.root.current = "Prandtl Number"
+                    root.manager.transition.direction = "left"
+                                
+            Button:
+                text: "Grashof\nNumber"
+                font_size: 50
+                on_release:
+                    app.root.current = "Grashof Number"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Rayleigh\nNumber"
+                font_size: 50
+                on_release:
+                    app.root.current = "Rayleigh Number"
+                    root.manager.transition.direction = "left"        
+
+<Reynolds>:
+    name: "Reynold Number"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        GridLayout:
+    		cols: 2
+    		
+            Label:
+                text: "Reynolds Number"
+                font_size: 50
+                
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Demensionless"
+                    root.manager.transition.direction = "right"
+                
+        	Label:
+                id: T
+                text: "Temperature (Celcius)"
+                font_size: 50
+        	
+        	TextInput:
+    			id: T_input
+    			hint_text: "Input Temperature"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: V
+                text: "Velocity [m/s]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: V_input
+    			hint_text: "Input Velocity"
+    			font_size: 50
+    			
+    		Label:
+                id: L
+                text: "Length(or Diameter) [m]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: L_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+                
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Reynolds Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+
+<Prandtl>:
+    name: "Prandtl Number"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Prandtl Number"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Demensionless"
+                    root.manager.transition.direction = "right"
+                    
+            Label:
+                id: T
+                text: "Temperature (Celsius)"
+                font_size: 35
+            
+            TextInput:
+                id: T_input
+                hint_text: "Input Temperature"
+                font_size: 50
+            
+            Label:
+                id: P
+                text: "Pressure (kPa)"
+                font_size: 35
+                
+            TextInput:
+                id: P_input
+                hint_text: "Input Temperature"
+                font_size: 50
+                
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+                
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)     
+                    
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Prandtl Number ="
+                font_size: 50
+                on_text: root.result(result.text)   
+<Grashof>:
+    name: "Grashof Number"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        GridLayout:
+    		cols: 2
+    		
+            Label:
+                text: "Grashof Number"
+                font_size: 50
+                
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Demensionless"
+                    root.manager.transition.direction = "right"
+            
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    		
+    		Label:
+                id: Ts
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ts_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: L
+                text: "Length(or Diameter) [m]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: L_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+                
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Grashof Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+<Rayleigh>:
+    name: "Rayleigh Number"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        GridLayout:
+    		cols: 2
+    		
+            Label:
+                text: "Rayleigh Number"
+                font_size: 50
+                
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Demensionless"
+                    root.manager.transition.direction = "right"
+            
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: Ts
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ts_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: L
+                text: "Length(or Diameter) [m]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: L_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+                
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Rayleigh Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+<Convection>:
+    name: "Convection"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "MainWindow"
+                    root.manager.transition.direction = "right"
+        
+            Button:
+                text: "Forced Convection"
+                font_size: 50
+                on_release:
+                    app.root.current = "Forced Convection"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Free Convection"
+                font_size: 50
+                on_release:
+                    app.root.current = "Free Convection"
+                    root.manager.transition.direction = "left"
+
+<Forced_Convection>:
+    name: "Forced Convection"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Forced Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Convection"
+                    root.manager.transition.direction = "right"
+        
+            Button:
+                text: "External Flow"
+                font_size: 50
+                on_release:
+                    app.root.current = "External Flow"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Internal Flow"
+                font_size: 50
+                on_release:
+                    app.root.current = "Internal Flow"
+                    root.manager.transition.direction = "left"
+                    
+<External_Flow>:
+    name: "External Flow"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Forced Convection \n External Flow"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Forced Convection"
+                    root.manager.transition.direction = "right"
+        
+            Button:
+                text: "Plate"
+                font_size: 50
+                on_release:
+                    app.root.current = "External Plate"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Cylinder"
+                font_size: 50
+                on_release:
+                    app.root.current = "External Cylinder"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Sphere"
+                font_size: 50
+                on_release:
+                    app.root.current = "External Sphere"
+                    root.manager.transition.direction = "left"
+            
+            Button:
+                text: "Infinite Cylinder"
+                font_size: 50
+                on_release:
+                    app.root.current = "Infinite Cylinder"
+                    root.manager.transition.direction = "left"
+                    
+<External_Plate>:
+    name: "External Plate"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        GridLayout:
+    		cols: 2
+    		
+            Label:
+                text: "External Plate"
+                font_size: 50
+                
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "External Flow"
+                    root.manager.transition.direction = "right"
+            
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: Ts
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ts_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: V
+                text: "Velocity [m/s]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: V_input
+    			hint_text: "Input Velocity"
+    			font_size: 50
+    			
+    		Label:
+                id: L
+                text: "Length(or Diameter) [m]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: L_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+                
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+                    
+<External_Cylinder>:
+    name: "External Cylinder"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        GridLayout:
+    		cols: 2
+    		
+            Label:
+                text: "External Cylinder"
+                font_size: 50
+                
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "External Flow"
+                    root.manager.transition.direction = "right"
+            
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: Ts
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ts_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: V
+                text: "Velocity [m/s]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: V_input
+    			hint_text: "Input Velocity"
+    			font_size: 50
+    			
+    		Label:
+                id: D
+                text: "Diameter [m]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: D_input
+    			hint_text: "Input Diameter"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+                
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+                
+<External_Sphere>:
+    name: "External Sphere"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        GridLayout:
+    		cols: 2
+    		
+            Label:
+                text: "External Sphere"
+                font_size: 50
+                
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "External Flow"
+                    root.manager.transition.direction = "right"
+            
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: Ts
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ts_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: V
+                text: "Velocity [m/s]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: V_input
+    			hint_text: "Input Velocity"
+    			font_size: 50
+    			
+    		Label:
+                id: D
+                text: "Diameter [m]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: D_input
+    			hint_text: "Input Diameter"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+                
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+
+<Infinite_Cylinder>:
+    name: "Infinite Cylinder"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        GridLayout:
+    		cols: 2
+    		
+            Label:
+                text: "Infinite Cylinder"
+                font_size: 50
+                
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "External Flow"
+                    root.manager.transition.direction = "right"
+            
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: Ts
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ts_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: V
+                text: "Velocity [m/s]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: V_input
+    			hint_text: "Input Velocity"
+    			font_size: 50
+    			
+    		Label:
+                id: D
+                text: "Diameter [m]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: D_input
+    			hint_text: "Input Diameter"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+                
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+
+<Internal_Flow>:
+    name: "Internal Flow"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Forced Convection \n Internal Flow"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Forced Convection"
+                    root.manager.transition.direction = "right"
+        
+            Button:
+                text: "Entrance Area"
+                font_size: 50
+                on_release:
+                    app.root.current = "Entrance Area"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Complex Entrance Area"
+                font_size: 50
+                on_release:
+                    app.root.current = "Combined Entrance Area"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Circular Tube \nTurbulent Flow"
+                font_size: 50
+                on_release:
+                    app.root.current = "Circular Tube Turbulent Flow"
+                    root.manager.transition.direction = "left"
+                    
+<Entrance_Area>:
+    name: "Entrance Area"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        GridLayout:
+    		cols: 2
+    		
+            Label:
+                text: "Entrance Area"
+                font_size: 50
+                
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Internal Flow"
+                    root.manager.transition.direction = "right"
+            
+            Label:
+                id: T
+                text: "Temperature (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: T_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: x
+                text: "x [m]"
+                font_size: 35
+        	
+        	TextInput:
+    			id: x_input
+    			hint_text: "Input x"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: V
+                text: "Velocity [m/s]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: V_input
+    			hint_text: "Input Velocity"
+    			font_size: 50
+    			
+    		Label:
+                id: D
+                text: "Diameter [m]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: D_input
+    			hint_text: "Input Diameter"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+                
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+
+<Combined_Entrance_Area>:
+    name: "Combined Entrance Area"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        GridLayout:
+    		cols: 2
+    		
+            Label:
+                text: "Combined Entrance Area"
+                font_size: 50
+                
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Internal Flow"
+                    root.manager.transition.direction = "right"
+            
+            Label:
+                id: T
+                text: "Temperature (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: T_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: x
+                text: "x [m]"
+                font_size: 35
+        	
+        	TextInput:
+    			id: x_input
+    			hint_text: "Input x"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: V
+                text: "Velocity [m/s]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: V_input
+    			hint_text: "Input Velocity"
+    			font_size: 50
+    			
+    		Label:
+                id: D
+                text: "Diameter [m]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: D_input
+    			hint_text: "Input Diameter"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+                
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+
+<Circular_Tube_Turbulent_Flow>:
+    name: "Circular Tube Turbulent Flow"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        GridLayout:
+    		cols: 2
+    		
+            Label:
+                text: "Circular Tube Turbulent Flow"
+                font_size: 50
+                
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Internal Flow"
+                    root.manager.transition.direction = "right"
+            
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: Ts
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ts_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: V
+                text: "Velocity [m/s]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: V_input
+    			hint_text: "Input Velocity"
+    			font_size: 50
+    			
+    		Label:
+                id: D
+                text: "Diameter [m]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: D_input
+    			hint_text: "Input Diameter"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+                
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+
+<Free_Convection>:
+    name: "Free Convection"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Free Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Convection"
+                    root.manager.transition.direction = "right"
+        
+            Button:
+                text: "Vertical Plate"
+                font_size: 50
+                on_release:
+                    app.root.current = "Vertical Plate"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Horizontal Plate"
+                font_size: 50
+                on_release:
+                    app.root.current = "Horizontal Plate"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Horizontal Cylinder"
+                font_size: 50
+                on_release:
+                    app.root.current = "Horizontal Cylinder"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Sphere"
+                font_size: 50
+                on_release:
+                    app.root.current = "Sphere"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Horizontal Enclosure"
+                font_size: 50
+                on_release:
+                    app.root.current = "Horizontal Enclosure"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Vertical Cavity"
+                font_size: 50
+                on_release:
+                    app.root.current = "Vertical Cavity"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Concentric Cylinder"
+                font_size: 50
+                on_release:
+                    app.root.current = "Concentric Cylinder"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Concentric Sphere"
+                font_size: 50
+                on_release:
+                    app.root.current = "Concentric Sphere"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Tilted Cavity"
+                font_size: 50
+                on_release:
+                    app.root.current = "Tilted Cavity"
+                    root.manager.transition.direction = "left"
+                    
+                    
+<Vertical_Plate>:
+    name: "Vertical Plate"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Free Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Free Convection"
+                    root.manager.transition.direction = "right"
+        
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: Ts
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ts_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: L
+                text: "Length [L]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: L_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+                    
+<Horizontal_Plate>:
+    name: "Horizontal Plate"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Free Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Free Convection"
+                    root.manager.transition.direction = "right"
+        
+            Button:
+                text: "Horizontal_Plate_Top"
+                font_size: 50
+                on_release:
+                    app.root.current = "Horizontal Plate Top"
+                    root.manager.transition.direction = "left"
+                    
+            Button:
+                text: "Horizontal_Plate_Bottom"
+                font_size: 50
+                on_release:
+                    app.root.current = "Horizontal Plate Bottom"
+                    root.manager.transition.direction = "left"
+
+<Horizontal_Plate_Top>:
+    name: "Horizontal Plate Top"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Free Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Horizontal Plate"
+                    root.manager.transition.direction = "right"
+        
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: Ts
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ts_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: L
+                text: "Length [L]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: L_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+        
+<Horizontal_Plate_Bottom>:
+    name: "Horizontal Plate Bottom"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Free Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Horizontal Plate"
+                    root.manager.transition.direction = "right"
+        
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: Ts
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ts_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: L
+                text: "Length [L]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: L_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+                
+<Horizontal_Cylinder>:
+    name: "Horizontal Cylinder"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Free Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Free Convection"
+                    root.manager.transition.direction = "right"
+        
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: Ts
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ts_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: L
+                text: "Length [L]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: L_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+                
+<fc_sphere_nd>:
+    name: "Sphere"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Free Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Free Convection"
+                    root.manager.transition.direction = "right"
+        
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: Ts
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ts_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: L
+                text: "Length [L]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: L_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+                
+                
+                
+                
+<fc_horizontal_enclosure>:
+    name: "horizontal enclosure"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Free Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Free Convection"
+                    root.manager.transition.direction = "right"
+        
+            Label:
+                id: T1
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: T1_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: T2
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: T2_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: L
+                text: "Length [L]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: L_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+                
+<fc_vertical_cavity>:
+    name: "vertical cavity"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Free Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Free Convection"
+                    root.manager.transition.direction = "right"
+        
+            Label:
+                id: T1
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: T1_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: T2
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: T2_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: L
+                text: "Length [L]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: L_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
+                
+<fc_concentric_cylinder>:
+    name: "concentric cylinder"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Free Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Free Convection"
+                    root.manager.transition.direction = "right"
+        
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: To
+                text: "Temperature Outside (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: To_input
+    			hint_text: "Temperature Outside"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: ri
+                text: "Length [L]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: ri_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: ro
+                text: "Length [L]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: ro_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "q ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "k_eff ="
+                font_size: 50
+                on_text: root.result(result2.text)
+            
+            Label:
+                id: result3
+                text: "Rayleigh ="
+                font_size: 50
+                on_text: root.result(result3.text)
+                
+                
+<fc_concentric_sphere>:
+    name: "concentric sphere"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Free Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Free Convection"
+                    root.manager.transition.direction = "right"
+        
+            Label:
+                id: Ti
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: Ti_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: To
+                text: "Temperature Outside (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: To_input
+    			hint_text: "Temperature Outside"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: ri
+                text: "Length [L]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: ri_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: ro
+                text: "Length [L]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: ro_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "q ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "k_eff ="
+                font_size: 50
+                on_text: root.result(result2.text)
+            
+            Label:
+                id: result3
+                text: "Rayleigh ="
+                font_size: 50
+                on_text: root.result(result3.text)
+                
+<fc_tilted_cavity>:
+    name: "tilted cavity"
+    
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        
+        
+        GridLayout:
+            cols: 2
+            
+            Label:
+                text: "Free Convection"
+                font_size: 50
+            
+            Button:
+                text: "Go Back"
+                font_size: 50
+                on_release:
+                    app.root.current = "Free Convection"
+                    root.manager.transition.direction = "right"
+        
+            Label:
+                id: T1
+                text: "Temperature infinite (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: T1_input
+    			hint_text: "Input Temperature Infinite"
+    			font_size: 50
+    			
+    		Label:
+                id: T2
+                text: "Temperature surface (Celcius)"
+                font_size: 35
+        	
+        	TextInput:
+    			id: T2_input
+    			hint_text: "Temperature surface"
+    			font_size: 50
+    			
+    		Label:
+                id: P
+                text: "Pressure [kPa]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: P_input
+    			hint_text: "Input Pressure"
+    			font_size: 50
+    			
+    		Label:
+                id: L
+                text: "Length [L]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: L_input
+    			hint_text: "Input Length"
+    			font_size: 50
+    		
+    		Label:
+                id: tau
+                text: "tilt [tau]"
+                font_size: 50
+        	
+        	TextInput:
+    			id: tau_input
+    			hint_text: "Input tau"
+    			font_size: 50
+    			
+    		Label:
+                id: click_label
+                text: "Fluid"
+                font_size: 50
+
+            Spinner:
+                id: spinner_id
+                text: "Choose Fluid"
+                values: ["water", "air"]
+                on_text: root.spinner_clicked(spinner_id.text)
+
+                
+            Button:
+                id: result_btn
+				font_size: 50
+				text: "Result"
+				on_press: root.result(result)
+				
+            Label:
+                id: result
+                text: "Nusselt Number ="
+                font_size: 50
+                on_text: root.result(result.text)
+                
+            Label:
+                id: result2
+                text: "h [W/m2K] ="
+                font_size: 50
+                on_text: root.result(result2.text)
