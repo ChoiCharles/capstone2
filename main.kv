@@ -18,12 +18,12 @@ WindowManager:
     Combined_Entrance_Area:
     Circular_Tube_Turbulent_Flow:
     Free_Convection:
+    Vertical_Plate:
     Horizontal_Plate:
     Horizontal_Plate_Top:
     Horizontal_Plate_Bottom:
     Horizontal_Cylinder:
-    Vertical_Plate:
-    fc_sphere_nd:
+    Sphere:
     fc_horizontal_enclosure:
     fc_vertical_cavity:
     fc_concentric_cylinder:
@@ -111,6 +111,10 @@ WindowManager:
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
                 
+            Label:
+                id: clear
+				font_size: 50
+            
             Button:
                 id: result
 				font_size: 50
@@ -176,32 +180,32 @@ WindowManager:
                     app.root.current = "MainWindow"
                     root.manager.transition.direction = "right"
         
-            Button:
-                text: "Reynolds\n Number"
-                font_size: 50
-                on_release:
-                    app.root.current = "Reynold Number"
-                    root.manager.transition.direction = "left"
-            Button:
-                text: " Prandtl\nNumber"
-                font_size: 50
-                on_release:
-                    app.root.current = "Prandtl Number"
-                    root.manager.transition.direction = "left"
-                                
-            Button:
-                text: "Grashof\nNumber"
-                font_size: 50
-                on_release:
-                    app.root.current = "Grashof Number"
-                    root.manager.transition.direction = "left"
-                    
-            Button:
-                text: "Rayleigh\nNumber"
-                font_size: 50
-                on_release:
-                    app.root.current = "Rayleigh Number"
-                    root.manager.transition.direction = "left"        
+        Button:
+            text: "Reynolds\n Number"
+            font_size: 50
+            on_release:
+                app.root.current = "Reynold Number"
+                root.manager.transition.direction = "left"
+        Button:
+            text: " Prandtl\nNumber"
+            font_size: 50
+            on_release:
+                app.root.current = "Prandtl Number"
+                root.manager.transition.direction = "left"
+                            
+        Button:
+            text: "Grashof\nNumber"
+            font_size: 50
+            on_release:
+                app.root.current = "Grashof Number"
+                root.manager.transition.direction = "left"
+                
+        Button:
+            text: "Rayleigh\nNumber"
+            font_size: 50
+            on_release:
+                app.root.current = "Rayleigh Number"
+                root.manager.transition.direction = "left"
 
 <Reynolds>:
     name: "Reynold Number"
@@ -274,6 +278,12 @@ WindowManager:
                 text: "Choose Fluid"
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
+            
+            Label:
+                id: result
+                text: "Reynolds Number ="
+                font_size: 50
+                on_text: root.result(result.text)
                 
             Button:
                 id: result_btn
@@ -281,12 +291,6 @@ WindowManager:
 				text: "Result"
 				on_press: root.result(result)
 				
-            Label:
-                id: result
-                text: "Reynolds Number ="
-                font_size: 50
-                on_text: root.result(result.text)
-
 <Prandtl>:
     name: "Prandtl Number"
     
@@ -338,6 +342,12 @@ WindowManager:
                 text: "Choose Fluid"
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)     
+            
+            Label:
+                id: result
+                text: "Prandtl Number ="
+                font_size: 50
+                on_text: root.result(result.text)
                     
             Button:
                 id: result_btn
@@ -345,11 +355,7 @@ WindowManager:
 				text: "Result"
 				on_press: root.result(result)
 				
-            Label:
-                id: result
-                text: "Prandtl Number ="
-                font_size: 50
-                on_text: root.result(result.text)   
+            
 <Grashof>:
     name: "Grashof Number"
     
@@ -421,6 +427,12 @@ WindowManager:
                 text: "Choose Fluid"
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
+            
+            Label:
+                id: result
+                text: "Grashof Number ="
+                font_size: 50
+                on_text: root.result(result.text)
                 
             Button:
                 id: result_btn
@@ -428,12 +440,7 @@ WindowManager:
 				text: "Result"
 				on_press: root.result(result)
 				
-            Label:
-                id: result
-                text: "Grashof Number ="
-                font_size: 50
-                on_text: root.result(result.text)
-                
+
 <Rayleigh>:
     name: "Rayleigh Number"
     
@@ -505,6 +512,12 @@ WindowManager:
                 text: "Choose Fluid"
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
+            
+            Label:
+                id: result
+                text: "Rayleigh Number ="
+                font_size: 50
+                on_text: root.result(result.text)
                 
             Button:
                 id: result_btn
@@ -512,12 +525,6 @@ WindowManager:
 				text: "Result"
 				on_press: root.result(result)
 				
-            Label:
-                id: result
-                text: "Rayleigh Number ="
-                font_size: 50
-                on_text: root.result(result.text)
-                
 <Convection>:
     name: "Convection"
     
@@ -540,19 +547,19 @@ WindowManager:
                     app.root.current = "MainWindow"
                     root.manager.transition.direction = "right"
         
-            Button:
-                text: "Forced Convection"
-                font_size: 50
-                on_release:
-                    app.root.current = "Forced Convection"
-                    root.manager.transition.direction = "left"
-                    
-            Button:
-                text: "Free Convection"
-                font_size: 50
-                on_release:
-                    app.root.current = "Free Convection"
-                    root.manager.transition.direction = "left"
+        Button:
+            text: "Forced Convection"
+            font_size: 50
+            on_release:
+                app.root.current = "Forced Convection"
+                root.manager.transition.direction = "left"
+                
+        Button: 
+            text: "Free Convection"
+            font_size: 50
+            on_release:
+                app.root.current = "Free Convection"
+                root.manager.transition.direction = "left"
 
 <Forced_Convection>:
     name: "Forced Convection"
@@ -576,19 +583,19 @@ WindowManager:
                     app.root.current = "Convection"
                     root.manager.transition.direction = "right"
         
-            Button:
-                text: "External Flow"
-                font_size: 50
-                on_release:
-                    app.root.current = "External Flow"
-                    root.manager.transition.direction = "left"
-                    
-            Button:
-                text: "Internal Flow"
-                font_size: 50
-                on_release:
-                    app.root.current = "Internal Flow"
-                    root.manager.transition.direction = "left"
+        Button:
+            text: "External Flow"
+            font_size: 50
+            on_release:
+                app.root.current = "External Flow"
+                root.manager.transition.direction = "left"
+                
+        Button:
+            text: "Internal Flow"
+            font_size: 50
+            on_release:
+                app.root.current = "Internal Flow"
+                root.manager.transition.direction = "left"
                     
 <External_Flow>:
     name: "External Flow"
@@ -612,33 +619,33 @@ WindowManager:
                     app.root.current = "Forced Convection"
                     root.manager.transition.direction = "right"
         
-            Button:
-                text: "Plate"
-                font_size: 50
-                on_release:
-                    app.root.current = "External Plate"
-                    root.manager.transition.direction = "left"
-                    
-            Button:
-                text: "Cylinder"
-                font_size: 50
-                on_release:
-                    app.root.current = "External Cylinder"
-                    root.manager.transition.direction = "left"
-                    
-            Button:
-                text: "Sphere"
-                font_size: 50
-                on_release:
-                    app.root.current = "External Sphere"
-                    root.manager.transition.direction = "left"
-            
-            Button:
-                text: "Infinite Cylinder"
-                font_size: 50
-                on_release:
-                    app.root.current = "Infinite Cylinder"
-                    root.manager.transition.direction = "left"
+        Button:
+            text: "Plate"
+            font_size: 50
+            on_release:
+                app.root.current = "External Plate"
+                root.manager.transition.direction = "left"
+                
+        Button:
+            text: "Cylinder"
+            font_size: 50
+            on_release:
+                app.root.current = "External Cylinder"
+                root.manager.transition.direction = "left"
+                
+        Button:
+            text: "Sphere"
+            font_size: 50
+            on_release:
+                app.root.current = "External Sphere"
+                root.manager.transition.direction = "left"
+        
+        Button:
+            text: "Infinite Cylinder"
+            font_size: 50
+            on_release:
+                app.root.current = "Infinite Cylinder"
+                root.manager.transition.direction = "left"
                     
 <External_Plate>:
     name: "External Plate"
@@ -721,6 +728,10 @@ WindowManager:
                 text: "Choose Fluid"
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
+            
+            Label:
+                id: clear
+				font_size: 50
                 
             Button:
                 id: result_btn
@@ -821,6 +832,10 @@ WindowManager:
                 text: "Choose Fluid"
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
+            
+            Label:
+                id: clear
+				font_size: 50
                 
             Button:
                 id: result_btn
@@ -921,6 +936,10 @@ WindowManager:
                 text: "Choose Fluid"
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
+            
+            Label:
+                id: clear
+				font_size: 50
                 
             Button:
                 id: result_btn
@@ -1021,6 +1040,10 @@ WindowManager:
                 text: "Choose Fluid"
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
+            
+            Label:
+                id: clear
+				font_size: 50
                 
             Button:
                 id: result_btn
@@ -1062,26 +1085,26 @@ WindowManager:
                     app.root.current = "Forced Convection"
                     root.manager.transition.direction = "right"
         
-            Button:
-                text: "Entrance Area"
-                font_size: 50
-                on_release:
-                    app.root.current = "Entrance Area"
-                    root.manager.transition.direction = "left"
-                    
-            Button:
-                text: "Complex Entrance Area"
-                font_size: 50
-                on_release:
-                    app.root.current = "Combined Entrance Area"
-                    root.manager.transition.direction = "left"
-                    
-            Button:
-                text: "Circular Tube \nTurbulent Flow"
-                font_size: 50
-                on_release:
-                    app.root.current = "Circular Tube Turbulent Flow"
-                    root.manager.transition.direction = "left"
+        Button:
+            text: "Entrance Area"
+            font_size: 50
+            on_release:
+                app.root.current = "Entrance Area"
+                root.manager.transition.direction = "left"
+                
+        Button:
+            text: "Complex Entrance Area"
+            font_size: 50
+            on_release:
+                app.root.current = "Combined Entrance Area"
+                root.manager.transition.direction = "left"
+                
+        Button:
+            text: "Circular Tube \nTurbulent Flow"
+            font_size: 50
+            on_release:
+                app.root.current = "Circular Tube Turbulent Flow"
+                root.manager.transition.direction = "left"
                     
 <Entrance_Area>:
     name: "Entrance Area"
@@ -1164,6 +1187,10 @@ WindowManager:
                 text: "Choose Fluid"
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
+            
+            Label:
+                id: clear
+				font_size: 50
                 
             Button:
                 id: result_btn
@@ -1264,6 +1291,10 @@ WindowManager:
                 text: "Choose Fluid"
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
+            
+            Label:
+                id: clear
+				font_size: 50
                 
             Button:
                 id: result_btn
@@ -1364,6 +1395,10 @@ WindowManager:
                 text: "Choose Fluid"
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
+            
+            Label:
+                id: clear
+				font_size: 50
                 
             Button:
                 id: result_btn
@@ -1481,7 +1516,7 @@ WindowManager:
             cols: 2
             
             Label:
-                text: "Free Convection"
+                text: "Vertical Plate"
                 font_size: 50
             
             Button:
@@ -1523,7 +1558,7 @@ WindowManager:
     			
     		Label:
                 id: L
-                text: "Length [L]"
+                text: "Length [m]"
                 font_size: 50
         	
         	TextInput:
@@ -1542,7 +1577,10 @@ WindowManager:
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
 
-                
+            Label:
+                id: clear
+				font_size: 50
+                            
             Button:
                 id: result_btn
 				font_size: 50
@@ -1573,7 +1611,7 @@ WindowManager:
             cols: 2
             
             Label:
-                text: "Free Convection"
+                text: "Horizontal Plate"
                 font_size: 50
             
             Button:
@@ -1583,19 +1621,19 @@ WindowManager:
                     app.root.current = "Free Convection"
                     root.manager.transition.direction = "right"
         
-            Button:
-                text: "Horizontal_Plate_Top"
-                font_size: 50
-                on_release:
-                    app.root.current = "Horizontal Plate Top"
-                    root.manager.transition.direction = "left"
-                    
-            Button:
-                text: "Horizontal_Plate_Bottom"
-                font_size: 50
-                on_release:
-                    app.root.current = "Horizontal Plate Bottom"
-                    root.manager.transition.direction = "left"
+        Button:
+            text: "Horizontal_Plate_Top"
+            font_size: 50
+            on_release:
+                app.root.current = "Horizontal Plate Top"
+                root.manager.transition.direction = "left"
+                
+        Button:
+            text: "Horizontal_Plate_Bottom"
+            font_size: 50
+            on_release:
+                app.root.current = "Horizontal Plate Bottom"
+                root.manager.transition.direction = "left"
 
 <Horizontal_Plate_Top>:
     name: "Horizontal Plate Top"
@@ -1609,7 +1647,7 @@ WindowManager:
             cols: 2
             
             Label:
-                text: "Free Convection"
+                text: "Horizontal Plate\nTop"
                 font_size: 50
             
             Button:
@@ -1651,7 +1689,7 @@ WindowManager:
     			
     		Label:
                 id: L
-                text: "Length [L]"
+                text: "Length [m]"
                 font_size: 50
         	
         	TextInput:
@@ -1670,6 +1708,9 @@ WindowManager:
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
 
+            Label:
+                id: clear
+				font_size: 50
                 
             Button:
                 id: result_btn
@@ -1701,7 +1742,7 @@ WindowManager:
             cols: 2
             
             Label:
-                text: "Free Convection"
+                text: "Horizontal Plate\nBottom"
                 font_size: 50
             
             Button:
@@ -1743,7 +1784,7 @@ WindowManager:
     			
     		Label:
                 id: L
-                text: "Length [L]"
+                text: "Length [m]"
                 font_size: 50
         	
         	TextInput:
@@ -1762,6 +1803,9 @@ WindowManager:
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
 
+            Label:
+                id: clear
+				font_size: 50
                 
             Button:
                 id: result_btn
@@ -1793,7 +1837,7 @@ WindowManager:
             cols: 2
             
             Label:
-                text: "Free Convection"
+                text: "Horizontal Cylinder"
                 font_size: 50
             
             Button:
@@ -1835,7 +1879,7 @@ WindowManager:
     			
     		Label:
                 id: L
-                text: "Length [L]"
+                text: "Length [m]"
                 font_size: 50
         	
         	TextInput:
@@ -1854,6 +1898,9 @@ WindowManager:
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
 
+            Label:
+                id: clear
+				font_size: 50
                 
             Button:
                 id: result_btn
@@ -1873,7 +1920,7 @@ WindowManager:
                 font_size: 50
                 on_text: root.result(result2.text)
                 
-<fc_sphere_nd>:
+<Sphere>:
     name: "Sphere"
     
     BoxLayout:
@@ -1885,7 +1932,7 @@ WindowManager:
             cols: 2
             
             Label:
-                text: "Free Convection"
+                text: "Free Convection\nSphere"
                 font_size: 50
             
             Button:
@@ -1927,7 +1974,7 @@ WindowManager:
     			
     		Label:
                 id: L
-                text: "Length [L]"
+                text: "Length [m]"
                 font_size: 50
         	
         	TextInput:
@@ -1946,7 +1993,10 @@ WindowManager:
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
 
-                
+            Label:
+                id: clear
+				font_size: 50
+            
             Button:
                 id: result_btn
 				font_size: 50
@@ -1965,11 +2015,8 @@ WindowManager:
                 font_size: 50
                 on_text: root.result(result2.text)
                 
-                
-                
-                
 <fc_horizontal_enclosure>:
-    name: "horizontal enclosure"
+    name: "Horizontal Enclosure"
     
     BoxLayout:
         orientation: "vertical"
@@ -1980,7 +2027,7 @@ WindowManager:
             cols: 2
             
             Label:
-                text: "Free Convection"
+                text: "Horizontal Enclosure"
                 font_size: 50
             
             Button:
@@ -2022,7 +2069,7 @@ WindowManager:
     			
     		Label:
                 id: L
-                text: "Length [L]"
+                text: "Length [m]"
                 font_size: 50
         	
         	TextInput:
@@ -2041,7 +2088,10 @@ WindowManager:
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
 
-                
+            Label:
+                id: clear
+				font_size: 50
+            
             Button:
                 id: result_btn
 				font_size: 50
@@ -2061,7 +2111,7 @@ WindowManager:
                 on_text: root.result(result2.text)
                 
 <fc_vertical_cavity>:
-    name: "vertical cavity"
+    name: "Vertical Cavity"
     
     BoxLayout:
         orientation: "vertical"
@@ -2072,7 +2122,7 @@ WindowManager:
             cols: 2
             
             Label:
-                text: "Free Convection"
+                text: "Vertical Cavity"
                 font_size: 50
             
             Button:
@@ -2114,13 +2164,23 @@ WindowManager:
     			
     		Label:
                 id: L
-                text: "Length [L]"
+                text: "Length [m]"
                 font_size: 50
         	
         	TextInput:
     			id: L_input
     			hint_text: "Input Length"
     			font_size: 50
+    			
+    		Label:
+                id: H
+                text: "Height [m]"
+                font_size: 50
+           
+            TextInput:
+                id: H_input
+                hint_text: "Input Height"
+                font_size: 50
     			
     		Label:
                 id: click_label
@@ -2133,7 +2193,10 @@ WindowManager:
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
 
-                
+            Label:
+                id: clear
+				font_size: 50
+            
             Button:
                 id: result_btn
 				font_size: 50
@@ -2153,7 +2216,7 @@ WindowManager:
                 on_text: root.result(result2.text)
                 
 <fc_concentric_cylinder>:
-    name: "concentric cylinder"
+    name: "Concentric Cylinder"
     
     BoxLayout:
         orientation: "vertical"
@@ -2164,7 +2227,7 @@ WindowManager:
             cols: 2
             
             Label:
-                text: "Free Convection"
+                text: "Concentric Cylinder"
                 font_size: 50
             
             Button:
@@ -2176,22 +2239,22 @@ WindowManager:
         
             Label:
                 id: Ti
-                text: "Temperature infinite (Celcius)"
+                text: "Inside Temperature (Celcius)"
                 font_size: 35
         	
         	TextInput:
     			id: Ti_input
-    			hint_text: "Input Temperature Infinite"
+    			hint_text: "Input Inside Temperature"
     			font_size: 50
     			
     		Label:
                 id: To
-                text: "Temperature Outside (Celcius)"
+                text: "Outside Temperature (Celcius)"
                 font_size: 35
         	
         	TextInput:
     			id: To_input
-    			hint_text: "Temperature Outside"
+    			hint_text: "Input Outside Temperature"
     			font_size: 50
     			
     		Label:
@@ -2206,22 +2269,22 @@ WindowManager:
     			
     		Label:
                 id: ri
-                text: "Length [L]"
+                text: "Radius 1 [m]"
                 font_size: 50
         	
         	TextInput:
     			id: ri_input
-    			hint_text: "Input Length"
+    			hint_text: "Input Radius 1"
     			font_size: 50
     			
     		Label:
                 id: ro
-                text: "Length [L]"
+                text: "Radius 2 [m]"
                 font_size: 50
         	
         	TextInput:
     			id: ro_input
-    			hint_text: "Input Length"
+    			hint_text: "Input Radius 2"
     			font_size: 50
     			
     		Label:
@@ -2235,7 +2298,10 @@ WindowManager:
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
 
-                
+            Label:
+                id: clear
+				font_size: 50
+            
             Button:
                 id: result_btn
 				font_size: 50
@@ -2262,7 +2328,7 @@ WindowManager:
                 
                 
 <fc_concentric_sphere>:
-    name: "concentric sphere"
+    name: "Concentric Sphere"
     
     BoxLayout:
         orientation: "vertical"
@@ -2273,7 +2339,7 @@ WindowManager:
             cols: 2
             
             Label:
-                text: "Free Convection"
+                text: "Concentric Sphere"
                 font_size: 50
             
             Button:
@@ -2285,22 +2351,22 @@ WindowManager:
         
             Label:
                 id: Ti
-                text: "Temperature infinite (Celcius)"
+                text: "Inside Temperature (Celcius)"
                 font_size: 35
         	
         	TextInput:
     			id: Ti_input
-    			hint_text: "Input Temperature Infinite"
+    			hint_text: "Input Inside Temperature"
     			font_size: 50
     			
     		Label:
                 id: To
-                text: "Temperature Outside (Celcius)"
+                text: "Outside Temperature (Celcius)"
                 font_size: 35
         	
         	TextInput:
     			id: To_input
-    			hint_text: "Temperature Outside"
+    			hint_text: "Input Outside Temperature"
     			font_size: 50
     			
     		Label:
@@ -2315,22 +2381,22 @@ WindowManager:
     			
     		Label:
                 id: ri
-                text: "Length [L]"
+                text: "Radius 1 [m]"
                 font_size: 50
         	
         	TextInput:
     			id: ri_input
-    			hint_text: "Input Length"
+    			hint_text: "Input Radius 1"
     			font_size: 50
     			
     		Label:
                 id: ro
-                text: "Length [L]"
+                text: "Radius 2 [m]"
                 font_size: 50
         	
         	TextInput:
     			id: ro_input
-    			hint_text: "Input Length"
+    			hint_text: "Input Radius 2"
     			font_size: 50
     			
     		Label:
@@ -2344,7 +2410,10 @@ WindowManager:
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
 
-                
+            Label:
+                id: clear
+				font_size: 50
+            
             Button:
                 id: result_btn
 				font_size: 50
@@ -2370,7 +2439,7 @@ WindowManager:
                 on_text: root.result(result3.text)
                 
 <fc_tilted_cavity>:
-    name: "tilted cavity"
+    name: "Tilted Cavity"
     
     BoxLayout:
         orientation: "vertical"
@@ -2381,7 +2450,7 @@ WindowManager:
             cols: 2
             
             Label:
-                text: "Free Convection"
+                text: "Tilted Cavity"
                 font_size: 50
             
             Button:
@@ -2452,7 +2521,10 @@ WindowManager:
                 values: ["water", "air"]
                 on_text: root.spinner_clicked(spinner_id.text)
 
-                
+            Label:
+                id: clear
+				font_size: 50
+            
             Button:
                 id: result_btn
 				font_size: 50
